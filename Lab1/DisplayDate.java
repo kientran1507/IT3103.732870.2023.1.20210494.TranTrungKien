@@ -66,7 +66,6 @@ public class DisplayDate {
             return -1; // Invalid month
         }
 
-        // Array containing the number of days in each month
         int[] daysInMonth = {31, isLeapYear(year) ? 29 : 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
 
         return daysInMonth[month - 1]; // Adjust for 0-based array
