@@ -31,7 +31,6 @@ public class DisplayDate {
     }
 
     public static boolean isValidMonth(String input) {
-        // Define valid month names and abbreviations
         String[] validMonths = {"January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December",
                                 "Jan.", "Feb.", "Mar.", "Apr.", "May", "Jun.", "Jul.", "Aug.", "Sep.", "Oct.", "Nov.", "Dec.",
                                 "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec",
@@ -47,28 +46,28 @@ public class DisplayDate {
     }
 
     public static int getMonthNumber(String input) {
-        // Define month numbers corresponding to month names and abbreviations
         String[] monthNames = {"January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"};
         String[] monthAbbreviations = {"Jan.", "Feb.", "Mar.", "Apr.", "May", "Jun.", "Jul.", "Aug.", "Sep.", "Oct.", "Nov.", "Dec."};
+        String[] month3Letters = {"Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec",};
         String[] monthNumbers = {"1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"};
 
         for (int i = 0; i < monthNames.length; i++) {
-            if (input.equalsIgnoreCase(monthNames[i]) || input.equalsIgnoreCase(monthAbbreviations[i]) || input.equalsIgnoreCase(monthNumbers[i])) {
-                return i + 1; // Month numbers start from 1
+            if (input.equalsIgnoreCase(monthNames[i]) || input.equalsIgnoreCase(monthAbbreviations[i]) || input.equalsIgnoreCase(monthNumbers[i]) || input.equalsIgnoreCase(month3Letters[i])) {
+                return i + 1;
             }
         }
 
-        return -1; // Invalid month
+        return -1;
     }
 
     public static int getDaysInMonth(int month, int year) {
         if (month < 1 || month > 12) {
-            return -1; // Invalid month
+            return -1;
         }
 
         int[] daysInMonth = {31, isLeapYear(year) ? 29 : 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
 
-        return daysInMonth[month - 1]; // Adjust for 0-based array
+        return daysInMonth[month - 1];
     }
 
     public static boolean isLeapYear(int year) {
