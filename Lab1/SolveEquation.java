@@ -45,12 +45,12 @@ public class SolveEquation {
     public static void solveLinearSystem() {
         double a11 = Double.parseDouble(JOptionPane.showInputDialog("Enter the coefficient 'a11' for the linear system: \n a11*x1 + a12*x2 = b1 \n a21*x1 + a22*x2 = b2"));
         double a12 = Double.parseDouble(JOptionPane.showInputDialog("Enter the coefficient 'a12': \n" + a11 + "*x1 + a12*x2 = b1 \n a21*x1 + a22*x2 = b2"));
-        double a21 = Double.parseDouble(JOptionPane.showInputDialog("Enter the coefficient 'a21': \n" + a11 + "*x1 + " + a12 +"*x2=b1 \n a21*x1 + a22*x2 = b2"));
-        double a22 = Double.parseDouble(JOptionPane.showInputDialog("Enter the coefficient 'a22': \n" + a11 + "*x1 + " + a12 +"*x2=b1 \n" + a21 + "*x1 + a22*x2 = b2"));
+        double a21 = Double.parseDouble(JOptionPane.showInputDialog("Enter the coefficient 'a21': \n" + a11 + "*x1 + " + a12 +"*x2 = b1 \n a21*x1 + a22*x2 = b2"));
+        double a22 = Double.parseDouble(JOptionPane.showInputDialog("Enter the coefficient 'a22': \n" + a11 + "*x1 + " + a12 +"*x2 = b1 \n" + a21 + "*x1 + a22*x2 = b2"));
 
-        double b1 = Double.parseDouble(JOptionPane.showInputDialog("Enter the constant 'b1': \n" + a11 + "*x1 + " + a12 +"*x2=b1 \n" + a21 + "*x1 + "+ a22 +"*x2 = b2"));
-        double b2 = Double.parseDouble(JOptionPane.showInputDialog("Enter the constant 'b2': \n" + a11 + "*x1 + " + a12 +"*x2=" + b1 + "\n" + a21 + "*x1 + "+ a22 +"*x2 = b2"));
-        JOptionPane.showMessageDialog(null, "This is your equation: \n" + a11 + "*x1 + " + a12 +"*x2=" + b1 + "\n" + a21 + "*x1 + "+ a22 +"*x2 = " + b2, "Confirm", JOptionPane.INFORMATION_MESSAGE);
+        double b1 = Double.parseDouble(JOptionPane.showInputDialog("Enter the constant 'b1': \n" + a11 + "*x1 + " + a12 +"*x2 = b1 \n" + a21 + "*x1 + "+ a22 +"*x2 = b2"));
+        double b2 = Double.parseDouble(JOptionPane.showInputDialog("Enter the constant 'b2': \n" + a11 + "*x1 + " + a12 +"*x2 = " + b1 + "\n" + a21 + "*x1 + "+ a22 +"*x2 = b2"));
+        JOptionPane.showMessageDialog(null, "This is your equation: \n" + a11 + "*x1 + " + a12 +"*x2 = " + b1 + "\n" + a21 + "*x1 + "+ a22 +"*x2 = " + b2, "Confirm", JOptionPane.INFORMATION_MESSAGE);
         double D = a11 * a22 - a21 * a12;
         double D1 = b1 * a22 - b2 * a12;
         double D2 = a11 * b2 - a21 * b1;
