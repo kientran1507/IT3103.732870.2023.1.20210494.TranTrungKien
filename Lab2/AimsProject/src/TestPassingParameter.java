@@ -18,7 +18,15 @@ public class TestPassingParameter {
 		o1 = o2;
 		o2 = tmp;
 	}
-	
+	/*    Correct swap method
+	public static void swap(DigitalVideoDisc dvd1, DigitalVideoDisc dvd2) {
+    // Swap the titles directly
+    	String tmpTitle = dvd1.getTitle();
+    	dvd1.setTitle(dvd2.getTitle());
+    	dvd2.setTitle(tmpTitle);
+    	}
+    */
+
 	public static void changeTitle(DigitalVideoDisc dvd, String title) {
 		String oldTitle = dvd.getTitle();
 		dvd.setTitle(title);
