@@ -15,7 +15,7 @@ public class DigitalVideoDisc {
     public String getTitle() {
         return title;
     }
-
+    
     public String getCategory() {
         return category;
     }
@@ -31,7 +31,17 @@ public class DigitalVideoDisc {
     public float getCost() {
         return cost;
     }
-
+    
+    // Setter method to set the title of the DVD
+    public void setTitle(String title) {
+        this.title = title;
+    }
+    
+    // Constructor with only title
+    public DigitalVideoDisc(String title) {
+        super();
+        this.title = title;
+    }
     // Constructor with only ID and title
     public DigitalVideoDisc(int iD, String title) {
         super();
