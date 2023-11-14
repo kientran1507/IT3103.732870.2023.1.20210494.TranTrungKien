@@ -1,5 +1,6 @@
 //TranTrungKien-20210494
 public class DigitalVideoDisc {
+	private static int nbDigitalVideoDiscs = 0; // Class attribute to keep track of the number of DVDs
     private int ID;
     private String title;
     private String category;
@@ -40,28 +41,23 @@ public class DigitalVideoDisc {
     // Constructor with only title
     public DigitalVideoDisc(String title) {
         super();
-        this.title = title;
-    }
-    // Constructor with only ID and title
-    public DigitalVideoDisc(int iD, String title) {
-        super();
-        ID = iD;
+        this.ID = ++nbDigitalVideoDiscs;
         this.title = title;
     }
 
     // Constructor with ID, title, category, and cost
-    public DigitalVideoDisc(int iD, String title, String category, float cost) {
+    public DigitalVideoDisc(String title, String category, float cost) {
         super();
-        ID = iD;
+        this.ID = ++nbDigitalVideoDiscs;
         this.title = title;
         this.category = category;
         this.cost = cost;
     }
 
     // Constructor with ID, title, category, director, and cost
-    public DigitalVideoDisc(int iD, String title, String category, String director, float cost) {
+    public DigitalVideoDisc(String title, String category, String director, float cost) {
         super();
-        ID = iD;
+        this.ID = ++nbDigitalVideoDiscs;
         this.title = title;
         this.category = category;
         this.director = director;
@@ -69,9 +65,9 @@ public class DigitalVideoDisc {
     }
 
     // Constructor with ID, title, category, director, length, and cost
-    public DigitalVideoDisc(int iD, String title, String category, String director, int length, float cost) {
+    public DigitalVideoDisc(String title, String category, String director, int length, float cost) {
         super();
-        ID = iD;
+        this.ID = ++nbDigitalVideoDiscs;
         this.title = title;
         this.category = category;
         this.director = director;
