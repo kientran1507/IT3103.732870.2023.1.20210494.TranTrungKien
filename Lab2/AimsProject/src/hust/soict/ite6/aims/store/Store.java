@@ -1,7 +1,7 @@
 //TranTrungKien-20210494
 
-package hust.soict.dsai.aims.store;
-import hust.soict.dsai.aims.disc.DigitalVideoDisc;
+package hust.soict.ite6.aims.store;
+import hust.soict.ite6.aims.disc.DigitalVideoDisc;
 
 public class Store {
     private DigitalVideoDisc itemsInStore[]; // Array of DVDs available in the store

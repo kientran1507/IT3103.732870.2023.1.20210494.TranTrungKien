@@ -1,8 +1,8 @@
 //TranTrungKien-20210494
 
-package hust.soict.dsai.test.cart;
-import hust.soict.dsai.aims.cart.Cart;
-import hust.soict.dsai.aims.disc.DigitalVideoDisc;
+package hust.soict.ite6.test.cart;
+import hust.soict.ite6.aims.cart.Cart;
+import hust.soict.ite6.aims.disc.DigitalVideoDisc;
 
 public class CartTest {
 	public static void main(String[] args) {

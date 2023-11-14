@@ -1,7 +1,7 @@
 //TranTrungKien-20210494
 
-package hust.soict.dsai.test.disc;
-import hust.soict.dsai.aims.disc.DigitalVideoDisc;
+package hust.soict.ite6.test.disc;
+import hust.soict.ite6.aims.disc.DigitalVideoDisc;
 
 public class TestPassingParameter {
 

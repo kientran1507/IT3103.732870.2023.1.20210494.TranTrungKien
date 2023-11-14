@@ -1,8 +1,7 @@
 //TranTrungKien-20210494
 
-package hust.soict.dsai.aims.cart;
-
-import hust.soict.dsai.aims.disc.DigitalVideoDisc;
+package hust.soict.ite6.aims.cart;
+import hust.soict.ite6.aims.disc.DigitalVideoDisc;
 
 public class Cart {
     // Maximum number of DVDs that can be added to the cart

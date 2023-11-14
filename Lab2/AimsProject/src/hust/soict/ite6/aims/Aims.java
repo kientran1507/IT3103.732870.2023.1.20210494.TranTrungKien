@@ -1,8 +1,8 @@
 //TranTrungKien-20210494
 
-package hust.soict.dsai.aims;
-import hust.soict.dsai.aims.cart.Cart;
-import hust.soict.dsai.aims.disc.DigitalVideoDisc;
+package hust.soict.ite6.aims;
+import hust.soict.ite6.aims.cart.Cart;
+import hust.soict.ite6.aims.disc.DigitalVideoDisc;
 
 public class Aims {
 

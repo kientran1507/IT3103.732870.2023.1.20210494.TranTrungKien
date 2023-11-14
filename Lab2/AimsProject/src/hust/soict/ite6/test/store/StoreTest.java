@@ -1,8 +1,8 @@
 //TranTrungKien-20210494
 
-package hust.soict.dsai.test.store;
-import hust.soict.dsai.aims.disc.DigitalVideoDisc;
-import hust.soict.dsai.aims.store.Store;
+package hust.soict.ite6.test.store;
+import hust.soict.ite6.aims.disc.DigitalVideoDisc;
+import hust.soict.ite6.aims.store.Store;
 
 public class StoreTest {
     public static void main(String[] args) {

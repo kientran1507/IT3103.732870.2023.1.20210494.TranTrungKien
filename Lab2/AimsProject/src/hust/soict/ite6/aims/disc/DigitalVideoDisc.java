@@ -1,6 +1,6 @@
 //TranTrungKien-20210494
 
-package hust.soict.dsai.aims.disc;
+package hust.soict.ite6.aims.disc;
 
 public class DigitalVideoDisc {
 	private static int nbDigitalVideoDiscs = 0; // Class attribute to keep track of the number of DVDs
