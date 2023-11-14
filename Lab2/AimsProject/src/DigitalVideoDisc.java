@@ -7,7 +7,7 @@ public class DigitalVideoDisc {
     private String director;
     private int length;
     private float cost;
-
+    
     // Getter methods to retrieve the properties of the DVD
     public int getID() {
         return ID;
@@ -37,7 +37,7 @@ public class DigitalVideoDisc {
     public void setTitle(String title) {
         this.title = title;
     }
-    
+
     // Constructor with only title
     public DigitalVideoDisc(String title) {
         super();
@@ -74,4 +74,9 @@ public class DigitalVideoDisc {
         this.length = length;
         this.cost = cost;
     }
+    // Override the toString method
+    public String toString() {
+        return "[" + title + "] - [" + category + "] - [" + director + "] - [" + length + "]: " + cost + " $";
+    }
+    
 }

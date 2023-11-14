@@ -66,6 +66,42 @@ public class Cart {
         }
         System.out.println("The disc is not in the cart.");
     }
+    
+    // Method to print the list of ordered items, their prices, and total cost
+    public void printOrder() {
+        System.out.println("***********************CART***********************");
+        System.out.println("Ordered Items:");
+
+        for (int i = 0; i < qtyOrdered; i++) {
+            DigitalVideoDisc dvd = itemsOrdered[i];
+            System.out.println((i + 1) + ". DVD - " + dvd);
+        }
+
+        System.out.println("Total cost is: " + totalCost() + " $");
+        System.out.println("***************************************************");
+    }
+
+    // Method to search for DVDs in the cart by ID and display the results
+    public void searchByID(int id) {
+        for (DigitalVideoDisc dvd : itemsOrdered) {
+            if (dvd != null && dvd.getID() == id) {
+                System.out.println("Found DVD with ID " + id + ": " + dvd);
+                return;
+            }
+        }
+        System.out.println("No DVD found with ID " + id + " in the cart.");
+    }
+
+    // Method to search for DVDs in the cart by title and display the results
+    public void searchByTitle(String title) {
+        for (DigitalVideoDisc dvd : itemsOrdered) {
+            if (dvd != null && dvd.getTitle() == title) {
+                System.out.println("Found DVD with title \"" + title + "\": " + dvd);
+                return;
+            }
+        }
+        System.out.println("No DVD found with title \"" + title + "\" in the cart.");
+    }
 
     // Method to calculate the total cost of items in the cart
     public float totalCost() {
