@@ -3,33 +3,9 @@ package hust.soict.ite6.aims.media;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Book {
-	private int ID;
-	private String title;
-	private String category;
-	private float cost;
+public class Book extends Media{
 	private List<String> authors = new ArrayList<String>();
 	
-	// Getter methods to retrieve the properties of a book
-	public int getID() {
-		return ID;
-	}
-
-
-	public String getTitle() {
-		return title;
-	}
-
-
-	public String getCategory() {
-		return category;
-	}
-
-
-	public float getCost() {
-		return cost;
-	}
-
 	// Method to add an author
     public void addAuthor(String authorName) {
         // Ensure that the author is not already in the ArrayList before adding

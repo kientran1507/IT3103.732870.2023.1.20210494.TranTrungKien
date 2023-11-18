@@ -1,44 +1,17 @@
 //TranTrungKien-20210494
 
-package hust.soict.ite6.aims.disc;
+package hust.soict.ite6.aims.media;
 
-public class DigitalVideoDisc {
+public class DigitalVideoDisc extends Media{
 	private static int nbDigitalVideoDiscs = 0; // Class attribute to keep track of the number of DVDs
-    private int ID;
-    private String title;
-    private String category;
     private String director;
     private int length;
-    private float cost;
-    
-    // Getter methods to retrieve the properties of the DVD
-    public int getID() {
-        return ID;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-    
-    public String getCategory() {
-        return category;
-    }
-
     public String getDirector() {
         return director;
     }
 
     public int getLength() {
         return length;
-    }
-
-    public float getCost() {
-        return cost;
-    }
-    
-    // Setter method to set the title of the DVD
-    public void setTitle(String title) {
-        this.title = title;
     }
 
     // Constructor with only title
