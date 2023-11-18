@@ -2,17 +2,8 @@
 
 package hust.soict.ite6.aims.media;
 
-public class DigitalVideoDisc extends Media{
+public class DigitalVideoDisc extends Disc{
 	private static int nbDigitalVideoDiscs = 0; // Class attribute to keep track of the number of DVDs
-    private String director;
-    private int length;
-    public String getDirector() {
-        return director;
-    }
-
-    public int getLength() {
-        return length;
-    }
 
     // Constructor with only title
     public DigitalVideoDisc(String title) {
