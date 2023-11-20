@@ -1,6 +1,8 @@
+//TranTrungKien-20210494
+
 package hust.soict.ite6.aims.media;
 
-public class Track {
+public class Track implements Playable{
     private String title;
     private int length;
 
@@ -9,7 +11,11 @@ public class Track {
         this.title = title;
         this.length = length;
     }
-
+    // Implement to play the track
+    public void play() {
+        System.out.println("Playing Track: " + getTitle());
+        System.out.println("Track length: " + getLength());
+    }
     // Getter methods for the fields
     public String getTitle() {
         return title;

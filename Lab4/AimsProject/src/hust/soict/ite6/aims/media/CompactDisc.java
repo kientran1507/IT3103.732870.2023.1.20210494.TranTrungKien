@@ -1,8 +1,10 @@
+//TranTrungKien-20210494
+
 package hust.soict.ite6.aims.media;
 
 import java.util.ArrayList;
 
-public class CompactDisc extends Disc {
+public class CompactDisc extends Disc implements Playable{
     private String artist;
     private ArrayList<Track> tracks = new ArrayList<>();
 
@@ -43,5 +45,16 @@ public class CompactDisc extends Disc {
             totalLength += track.getLength();
         }
         return totalLength;
+    }
+    // Implement to play a CD
+    public void play() {
+        System.out.println("Playing CD: " + getTitle());
+        System.out.println("CD artist: " + getArtist());
+        System.out.println("CD length: " + getLength() + " minutes");
+
+        // Loop through each track and call Track's play() method
+        for (Track track : tracks) {
+            track.play();
+        }
     }
 }
