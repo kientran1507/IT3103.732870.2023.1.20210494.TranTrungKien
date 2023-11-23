@@ -32,5 +32,16 @@ public class Book extends Media{
 	public Book() {
 		// TODO Auto-generated constructor stub
 	}
+    public Book(String title, String category, String author, float cost) {
+		this.title = title;
+		this.category = category;
+		authors.add(author);
+		this.cost = cost;
+	}
 
+	// Override the toString method
+    @Override
+    public String toString() {
+        return "[" + title + "] - [" + category + "] - [" + authors + "]: " + cost + " $";
+    }
 }
