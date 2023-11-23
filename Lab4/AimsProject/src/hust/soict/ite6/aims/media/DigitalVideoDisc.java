@@ -2,7 +2,7 @@
 
 package hust.soict.ite6.aims.media;
 
-public class DigitalVideoDisc extends Disc{
+public class DigitalVideoDisc extends Disc implements Playable{
 	private static int nbDigitalVideoDiscs = 0; // Class attribute to keep track of the number of DVDs
 
     // Constructor with only title
@@ -44,6 +44,11 @@ public class DigitalVideoDisc extends Disc{
     // Override the toString method
     public String toString() {
         return "[" + title + "] - [" + category + "] - [" + director + "] - [" + length + "]: " + cost + " $";
+    }
+    // Implement to play the DVD
+    public void play() {
+        System.out.println("Playing DVD: " + getTitle());
+        System.out.println("DVD length: " + getLength());
     }
     
 }
