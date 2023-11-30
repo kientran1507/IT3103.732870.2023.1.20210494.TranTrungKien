@@ -1,6 +1,8 @@
 //TranTrungKien-20210494
 
 package hust.soict.ite6.aims.cart;
+
+import java.util.Collections;
 import java.util.ArrayList;
 
 import hust.soict.ite6.aims.media.DigitalVideoDisc;
@@ -86,5 +88,15 @@ public class Cart {
     		totalCost += media.getCost();
         }
         return totalCost;
+    }
+    
+    // Method to sort media items in the cart by title then cost
+    public void sortMediaByTitleCost() {
+        Collections.sort(itemsOrdered, Media.COMPARE_BY_TITLE_COST);
+    }
+    
+    // Method to sort media items in the cart by cost then title
+    public void sortMediaByCostTitle() {
+        Collections.sort(itemsOrdered, Media.COMPARE_BY_COST_TITLE);
     }
 }
