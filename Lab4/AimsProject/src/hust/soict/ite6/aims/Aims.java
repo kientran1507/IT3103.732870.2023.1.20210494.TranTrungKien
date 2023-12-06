@@ -2,7 +2,8 @@
 
 package hust.soict.ite6.aims;
 
-import java.util.Scanner;
+import java.util.InputMismatchException;
+import java.util.Scanner;	
 
 import hust.soict.ite6.aims.cart.Cart;
 import hust.soict.ite6.aims.media.Book;
@@ -66,6 +67,11 @@ public class Aims {
     
     // Method to view the store and interact with store-related options
     private static void viewStore() {
+        if (store.isStoreEmpty()) {
+            System.out.println("The store is empty.");
+            return; // Return to the main menu
+        }
+        
     	store.displayStore();
         storeMenu();
         
@@ -116,44 +122,52 @@ public class Aims {
 
     // Method to see details of a specific media in the store
     public static void seeMediaDetails() {
-        System.out.print("Enter the title of the media: ");
-        String title = scanner.nextLine().toLowerCase();
-        
-        // Use the searchMediaByTitle method to get the Media object
-        Media foundMedia =  store.searchMediaByTitle(title.toLowerCase());
-        		
-        // Check if the media was found before proceeding
-        if (foundMedia != null) {
-            // Display media details
-            System.out.println("Details:");
-            System.out.println(foundMedia);
-
-            // Show the media details menu
-            mediaDetailsMenu();
-            
-            // Variable to store user's choice
-            int userChoice = scanner.nextInt();
-            scanner.nextLine(); // Consume the newline character
-            
-            switch (userChoice) {
-                case 1:
-                    cart.addMedia(foundMedia);
-                    break;
-                case 2:
-                    if (foundMedia instanceof Playable) {
-                        Playable playableMedia = (Playable) foundMedia;
-                        playableMedia.play();
-                    } else {
-                        System.out.println("This media is not playable.");
-                    }
-                    break;
-                case 0:
-                    System.out.println("Returning to store menu.");
-                    break;
-                default:
-                    System.out.println("Invalid choice. Please try again.");
-            }
-        } else System.out.println("This media is not in the store");
+    	
+    	try {
+    		
+	        System.out.print("Enter the title of the media: ");
+	        String title = scanner.nextLine().toLowerCase();
+	    	
+	        // Use the searchMediaByTitle method to get the Media object
+	        Media foundMedia =  store.searchMediaByTitle(title.toLowerCase());
+	        		
+	        // Check if the media was found before proceeding
+	        if (foundMedia != null) {
+	            // Display media details
+	            System.out.println("Details:");
+	            System.out.println(foundMedia);
+	
+	            // Show the media details menu
+	            mediaDetailsMenu();
+	            
+	            // Variable to store user's choice
+	            int userChoice = scanner.nextInt();
+	            scanner.nextLine(); // Consume the newline character
+	            
+	            switch (userChoice) {
+	                case 1:
+	                    cart.addMedia(foundMedia);
+	                    break;
+	                case 2:
+	                    if (foundMedia instanceof Playable) {
+	                        Playable playableMedia = (Playable) foundMedia;
+	                        playableMedia.play();
+	                    } else {
+	                        System.out.println("This media is not playable.");
+	                    }
+	                    break;
+	                case 0:
+	                    System.out.println("Returning to store menu.");
+	                    break;
+	                default:
+	                    System.out.println("Invalid choice. Please try again.");
+	            }
+	        } else System.out.println("This media is not in the store");
+	        
+	    } catch (InputMismatchException e) {
+		    System.out.println("Invalid input. Please enter a valid title.");
+		    scanner.nextLine(); // Consume the invalid input
+		}
     }
 
     // Display media details-specific menu
@@ -169,35 +183,51 @@ public class Aims {
     
     // Method to add a specific media to the cart
     private static void addMediaToCart() {
-        System.out.print("Enter the title of the media: ");
-        String title = scanner.nextLine().toLowerCase();
+    	
+    	try {
+    		
+	        System.out.print("Enter the title of the media: ");
+	        String title = scanner.nextLine().toLowerCase();
+	        
+	        // Use the searchMediaByTitle method to get the Media object
+	        Media foundMedia =  store.searchMediaByTitle(title.toLowerCase());
+	        		
+	        // Check if the media was found before proceeding
+	        if (foundMedia != null) {
+	        	cart.addMedia(foundMedia);
+	        } else System.out.println("This media is not in the store");
         
-        // Use the searchMediaByTitle method to get the Media object
-        Media foundMedia =  store.searchMediaByTitle(title.toLowerCase());
-        		
-        // Check if the media was found before proceeding
-        if (foundMedia != null) {
-        	cart.addMedia(foundMedia);
-        } else System.out.println("This media is not in the store");
+	    } catch (InputMismatchException e) {
+		    System.out.println("Invalid input. Please enter a valid title.");
+		    scanner.nextLine(); // Consume the invalid input
+		}
     }
 
     // Method to play a specific media
     private static void playMedia() {
-        System.out.print("Enter the title of the media: ");
-        String title = scanner.nextLine().toLowerCase();
+    	
+    	try {
+    		
+	        System.out.print("Enter the title of the media: ");
+	        String title = scanner.nextLine().toLowerCase();
+	        
+	        // Use the searchMediaByTitle method to get the Media object
+	        Media foundMedia =  store.searchMediaByTitle(title.toLowerCase());
+	        		
+	        // Check if the media was found before proceeding
+	        if (foundMedia != null) {
+	        	if (foundMedia instanceof Playable) {
+	                Playable playableMedia = (Playable) foundMedia;
+	                playableMedia.play();
+	        	} else {
+	                System.out.println("This media is not playable.");
+	        	}
+	        } else System.out.println("This media is not in the store");
         
-        // Use the searchMediaByTitle method to get the Media object
-        Media foundMedia =  store.searchMediaByTitle(title.toLowerCase());
-        		
-        // Check if the media was found before proceeding
-        if (foundMedia != null) {
-        	if (foundMedia instanceof Playable) {
-                Playable playableMedia = (Playable) foundMedia;
-                playableMedia.play();
-        	} else {
-                System.out.println("This media is not playable.");
-        	}
-        } else System.out.println("This media is not in the store");
+    	} catch (InputMismatchException e) {
+    		System.out.println("Invalid input. Please enter a valid title.");
+    		scanner.nextLine(); // Consume the invalid input
+    	}
     }
 
     // Method to update the store by adding or removing media
@@ -240,88 +270,104 @@ public class Aims {
         System.out.println("--------------------------------");
     }
 
-    // Method to add new media to the store
+ // Method to add new media to the store
     private static void addMediaToStore() {
-        System.out.print("Enter the title of the media to add: ");
-        String title = scanner.nextLine();
+    	
+        try {
+        	
+            System.out.print("Enter the title of the media to add: ");
+            String title = scanner.nextLine();
 
-        // Additional details depending on the type of media
-        System.out.print("Enter the category of the media: ");
-        String category = scanner.nextLine();
+            System.out.print("Enter the category of the media: ");
+            String category = scanner.nextLine();
 
-        System.out.print("Enter the cost of the media: ");
-        float cost = scanner.nextFloat();
-        scanner.nextLine(); // Consume the newline character
+            System.out.print("Enter the cost of the media: ");
+            float cost = scanner.nextFloat();
+            scanner.nextLine(); // Consume the newline character
 
-        // Choose the type of media to add (DVD, CD, Book) and create an instance
-        System.out.println("Choose the type of media to add:");
-        System.out.println("1. Digital Video Disc (DVD)");
-        System.out.println("2. Compact Disc (CD)");
-        System.out.println("3. Book");
-        System.out.print("Enter your choice: ");
-        
-        // Variable to store user's choice
-        int mediaTypeChoice = scanner.nextInt();
-        scanner.nextLine(); // Consume the newline character
+            // Choose the type of media to add (DVD, CD, Book) and create an instance
+            System.out.println("Choose the type of media to add:");
+            System.out.println("1. Digital Video Disc (DVD)");
+            System.out.println("2. Compact Disc (CD)");
+            System.out.println("3. Book");
+            System.out.print("Enter your choice: ");
 
-        Media newMedia = null;
+            // Variable to store user's choice
+            int mediaTypeChoice = scanner.nextInt();
+            scanner.nextLine(); // Consume the newline character
 
-        switch (mediaTypeChoice) {
-            case 1:
-                // For DVD, you might need additional details like director, length
-                System.out.print("Enter the director of the DVD: ");
-                String director = scanner.nextLine();
+            Media newMedia = null;
 
-                System.out.print("Enter the length of the DVD: ");
-                int length = scanner.nextInt();
-                scanner.nextLine(); // Consume the newline character
+            switch (mediaTypeChoice) {
+                case 1:
+                    // For DVD, you might need additional details like director, length
+                    System.out.print("Enter the director of the DVD: ");
+                    String director = scanner.nextLine();
 
-                newMedia = new DigitalVideoDisc(title, category, director, length, cost);
-                break;
-            case 2:
-                // For CD, you might need additional details like artist, tracks
-                System.out.print("Enter the artist of the CD: ");
-                String artist = scanner.nextLine();
+                    System.out.print("Enter the length of the DVD: ");
+                    int length = scanner.nextInt();
+                    scanner.nextLine(); // Consume the newline character
 
-                newMedia = new CompactDisc(title, category, cost, 0, artist); // Assuming CD length is not needed for now
-                break;
-            case 3:
-                // For Book, you might need additional details like authors
-                System.out.print("Enter the author of the book: ");
-                String author = scanner.nextLine();
+                    newMedia = new DigitalVideoDisc(title, category, director, length, cost);
+                    break;
+                case 2:
+                    // For CD, you might need additional details like artist, tracks
+                    System.out.print("Enter the artist of the CD: ");
+                    String artist = scanner.nextLine();
 
-                newMedia = new Book(title, category, author, cost);
-                break;
-            default:
-                System.out.println("Invalid choice. Media not added to the store.");
-                return; // Exit the method if the choice is invalid
+                    newMedia = new CompactDisc(title, category, cost, 0, artist); // Assuming CD length is not needed for now
+                    break;
+                case 3:
+                    // For Book, you might need additional details like authors
+                    System.out.print("Enter the author of the book: ");
+                    String author = scanner.nextLine();
+
+                    newMedia = new Book(title, category, author, cost);
+                    break;
+                default:
+                    System.out.println("Invalid choice. Media not added to the store.");
+                    return; // Exit the method if the choice is invalid
+            }
+
+            // Add the new media to the store
+            store.addMedia(newMedia);
+            System.out.println("Media added to the store.");
+            
+        } catch (InputMismatchException e) {
+            System.out.println("Invalid input. Please enter a valid value.");
+            scanner.nextLine(); // Consume the invalid input
         }
-
-        // Add the new media to the store
-        store.addMedia(newMedia);
-        System.out.println("Media added to the store.");
     }
+
 
     // Method to remove media from the store
     private static void removeMediaFromStore() {
-        System.out.print("Enter the title of the media to remove: ");
-        String title = scanner.nextLine().toLowerCase();
-
-        // Use the searchMediaByTitle method to get the Media object
-        Media foundMedia = store.searchMediaByTitle(title.toLowerCase());
-
-        // Check if the media was found before proceeding
-        if (foundMedia != null) {
-            System.out.print("Are you sure you want to remove this media from the store? (yes/no): ");
-            String confirmation = scanner.nextLine().toLowerCase();
-            if (confirmation.equals("yes")) {
-                store.removeMedia(foundMedia.getID());
-                System.out.println("Media removed from the store.");
-            } else {
-                System.out.println("Media removal canceled.");
-            }
-        } else {
-            System.out.println("This media is not in the store.");
+    	
+    	try {
+    		
+	        System.out.print("Enter the title of the media to remove: ");
+	        String title = scanner.nextLine().toLowerCase();
+	
+	        // Use the searchMediaByTitle method to get the Media object
+	        Media foundMedia = store.searchMediaByTitle(title.toLowerCase());
+	
+	        // Check if the media was found before proceeding
+	        if (foundMedia != null) {
+	            System.out.print("Are you sure you want to remove this media from the store? (yes/no): ");
+	            String confirmation = scanner.nextLine().toLowerCase();
+	            if (confirmation.equals("yes")) {
+	                store.removeMedia(foundMedia.getID());
+	                System.out.println("Media removed from the store.");
+	            } else {
+	                System.out.println("Media removal canceled.");
+	            }
+	        } else {
+	            System.out.println("This media is not in the store.");
+	        }
+	        
+        } catch (InputMismatchException e) {
+            System.out.println("Invalid input. Please enter a valid title.");
+            scanner.nextLine(); // Consume the invalid input
         }
     }
 
@@ -411,26 +457,42 @@ public class Aims {
     
     // Method to filter all the media in the cart by ID
     private static void filterMediaInCartById() {
-        System.out.print("Enter the ID to filter by: ");
+    	
+    	try {
+    		
+	        System.out.print("Enter the ID to filter by: ");
+	        
+	        // Variable to store user's choice
+	        int id = scanner.nextInt();
+	        scanner.nextLine(); // Consume the newline character
+	
+	        // Use the Cart's searchByID method to find the media by ID
+	        cart.searchByID(id);
         
-        // Variable to store user's choice
-        int id = scanner.nextInt();
-        scanner.nextLine(); // Consume the newline character
-
-        // Use the Cart's searchByID method to find the media by ID
-        cart.searchByID(id);
+        } catch (InputMismatchException e) {
+            System.out.println("Invalid input. Please enter a valid id.");
+            scanner.nextLine(); // Consume the invalid input
+        }
     }
 
     // Method to filter all the media in the cart by title
     private static void filterMediaInCartByTitle() {
-        System.out.print("Enter the title to filter by: ");
-        
-        // Variable to store user's choice
-        String title = scanner.nextLine();
-        scanner.nextLine(); // Consume the newline character
-
-        // Use the Cart's searchByTitle method to find the media by title
-        cart.searchByTitle(title);
+    	
+    	try {
+    		
+	        System.out.print("Enter the title to filter by: ");
+	        
+	        // Variable to store user's choice
+	        String title = scanner.nextLine();
+	        scanner.nextLine(); // Consume the newline character
+	
+	        // Use the Cart's searchByTitle method to find the media by title
+	        cart.searchByTitle(title);
+	        
+        } catch (InputMismatchException e) {
+            System.out.println("Invalid input. Please enter a valid title.");
+            scanner.nextLine(); // Consume the invalid input
+        }
     }
 
     // Method to sort media in the cart
@@ -480,12 +542,20 @@ public class Aims {
         
         switch (removeChoice) {
         	case 1:
-                System.out.print("Enter the title of the media: ");
-                String title = scanner.nextLine().toLowerCase();
-                scanner.nextLine(); // Consume the newline character
+        		
+        		try {
+  
+	                System.out.print("Enter the title of the media: ");
+	                String title = scanner.nextLine().toLowerCase();
+	                scanner.nextLine(); // Consume the newline character
+	                
+	                // Use the Cart's removeMediaByTitle method to find the media by title
+	                cart.removeMediaByTitle(title);
                 
-                // Use the Cart's removeMediaByTitle method to find the media by title
-                cart.removeMediaByTitle(title);
+                } catch (InputMismatchException e) {
+                    System.out.println("Invalid input. Please enter a valid title.");
+                    scanner.nextLine(); // Consume the invalid input
+                }
                 break;
             case 2:
             	// Clear the cart

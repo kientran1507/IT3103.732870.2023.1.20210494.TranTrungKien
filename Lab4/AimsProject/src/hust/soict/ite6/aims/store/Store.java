@@ -44,6 +44,11 @@ public class Store {
         }
     }
     
+    // Method to check if the store is empty or not
+    public boolean isStoreEmpty() {
+        return itemsInStore.isEmpty();
+    }
+    
  // Method to search for any media in the cart by title and display the results
     public Media searchMediaByTitle(String title) {
         for (Media media : itemsInStore) {
