@@ -50,6 +50,7 @@ public class CompactDisc extends Disc implements Playable{
         }
         return totalLength;
     }
+    
     // Implement to play a CD
     public void play() {
         System.out.println("Playing CD: " + getTitle());

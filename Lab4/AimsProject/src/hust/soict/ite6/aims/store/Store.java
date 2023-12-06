@@ -3,6 +3,9 @@
 package hust.soict.ite6.aims.store;
 import java.util.ArrayList;
 
+import hust.soict.ite6.aims.media.Book;
+import hust.soict.ite6.aims.media.CompactDisc;
+import hust.soict.ite6.aims.media.DigitalVideoDisc;
 import hust.soict.ite6.aims.media.Media;
 
 public class Store {
@@ -26,5 +29,46 @@ public class Store {
         }
         System.out.println("No media found with ID " + id + " in the store.");
     }
+
+    // Method to display the available media in the store
+    public void displayStore() {
+        if (itemsInStore.isEmpty()) {
+            System.out.println("The store is empty.");
+        } else {
+            System.out.println("Items available in the store:");
+            for (Media media : itemsInStore) {
+                if (media != null) {
+                    System.out.println(media.toString());
+                }
+            }
+        }
+    }
+    
+ // Method to search for any media in the cart by title and display the results
+    public Media searchMediaByTitle(String title) {
+        for (Media media : itemsInStore) {
+            if (media.getTitle().toLowerCase().equals(title)) {
+                return media;
+            }
+        }
+        return null;
+    }
+
+    // Method to display search results
+    public void displaySearchResults(String title, Media foundMedia) {
+        if (foundMedia != null) {
+            if (foundMedia instanceof DigitalVideoDisc) {
+                System.out.println("Found DVD with title \"" + title + "\": " + foundMedia);
+            } else if (foundMedia instanceof CompactDisc) {
+                System.out.println("Found CD with title \"" + title + "\": " + foundMedia);
+            } else if (foundMedia instanceof Book) {
+                System.out.println("Found Book with title \"" + title + "\": " + foundMedia);
+            }
+        } else {
+            System.out.println("No media found with title \"" + title + "\" in the cart.");
+        }
+    }
+
+
 }
 

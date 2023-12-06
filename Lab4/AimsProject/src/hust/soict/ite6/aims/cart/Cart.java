@@ -37,16 +37,25 @@ public class Cart {
         }
     }
     
+    // Method to remove media from the cart by title
+    public void removeMediaByTitle(String title) {
+        for (Media media : itemsOrdered) {
+            if (media.getTitle().equalsIgnoreCase(title)) {
+                removeMedia(media);
+                System.out.println("Removed from cart: " + title);
+                return;
+            }
+        }
+        System.out.println("No media found with title \"" + title + "\" in the cart.");
+    }
+    
     // Method to print the list of ordered items, their prices, and total cost
     public void printOrder() {
         System.out.println("***********************CART***********************");
         System.out.println("Ordered Items:");
 
         for (Media media : itemsOrdered) {
-            if (media instanceof DigitalVideoDisc) {
-                DigitalVideoDisc dvd = (DigitalVideoDisc) media;
-                System.out.println("DVD - " + dvd);
-            }
+            System.out.println(media.toString());
         }
 
         System.out.println("Total cost is: " + totalCost() + " $");
@@ -57,10 +66,9 @@ public class Cart {
     public void searchByID(int id) {
     	for (Media media : itemsOrdered) {
     		if (media instanceof DigitalVideoDisc) {
-    			DigitalVideoDisc dvd = (DigitalVideoDisc) media;
-    			if (dvd.getID() == id) {
-    				System.out.println("Found DVD with ID " + id + ": " + dvd);
-    				return;
+    	        if (media.getID() == id) {
+    	            System.out.println("Found media with ID " + id + ": " + media);
+    	            return;
     			}
     		}
     	}
@@ -71,9 +79,8 @@ public class Cart {
     public void searchByTitle(String title) {
     	for (Media media : itemsOrdered) {
     		if (media instanceof DigitalVideoDisc) {
-    			DigitalVideoDisc dvd = (DigitalVideoDisc) media;
-    			if (dvd.getTitle().equals(title)) {
-    				System.out.println("Found DVD with title \"" + title + "\": " + dvd);
+    	        if (media.getTitle() == title) {
+    				System.out.println("Found media with title \"" + title + "\": " + media);
     				return;
                 }
             }
@@ -98,5 +105,11 @@ public class Cart {
     // Method to sort media items in the cart by cost then title
     public void sortMediaByCostTitle() {
         Collections.sort(itemsOrdered, Media.COMPARE_BY_COST_TITLE);
+    }
+    
+    // Method to clear the cart
+    public void clearCart() {
+        itemsOrdered.clear();
+        System.out.println("Cart cleared.");
     }
 }
