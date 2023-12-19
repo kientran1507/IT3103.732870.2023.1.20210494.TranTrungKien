@@ -1,13 +1,14 @@
 package hust.soict.ite6.aims.screen;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridLayout;
 import java.util.ArrayList;
 
-import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
@@ -79,11 +80,34 @@ public class StoreScreen extends JFrame{
 		center.setLayout(new GridLayout(3, 3, 2, 2));
 		
 		ArrayList<Media> mediaInStore = store.getItemsInStore();
-		for(int i = 0; i < 9; i++) {
-			MediaStore cell = new MediaStore(mediaInStore.get(i));
-			center.add(cell);
+		int loopSize = Math.min(9, mediaInStore.size());  // Limit loop size to 9 or actual list size
+		for(int i = 0; i < loopSize; i++) {
+		    MediaStore cell = new MediaStore(mediaInStore.get(i));
+		    center.add(cell);
 		}
 		
 		return center;
 	}
+	
+	public StoreScreen(Store store) {
+		this.store = store;
+		Container cp = getContentPane();
+		cp.setLayout(new BorderLayout());
+		
+		cp.add(createNorth(), BorderLayout.NORTH);
+		cp.add(createCenter(), BorderLayout.CENTER);
+		
+		setVisible(true);
+		setTitle("Store");
+		setSize(1025,768);
+	}
+	
+    public static void main(String[] args) {
+        Store store = new Store();  // Create or obtain an instance of Store
+        new StoreScreen(store);
+    }
 }
+
+
+
+
