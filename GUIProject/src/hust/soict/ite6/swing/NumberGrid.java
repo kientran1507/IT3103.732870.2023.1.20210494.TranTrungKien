@@ -37,7 +37,7 @@ public class NumberGrid extends JFrame{
 	}
 	
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
+		new NumberGrid();
 
 	}
 	
@@ -56,6 +56,10 @@ public class NumberGrid extends JFrame{
 		btnNumbers[0] = new JButton("0");
 		panelButtons.add(btnNumbers[0]);
 		btnNumbers[0].addActionListener(btnListener);
+		
+		btnDelete = new JButton("CLR");
+		panelButtons.add(btnDelete);
+		btnDelete.addActionListener(btnListener);
 	}
 	
 	private class ButtonListener implements ActionListener{
@@ -65,9 +69,12 @@ public class NumberGrid extends JFrame{
 			if (button.charAt(0) >= '0' && button.charAt(0) <= '9') {
 				tfDisplay.setText(tfDisplay.getText() + button);
 			} else if (button.equals("DEL")) {
-				// Handles the "DEL" case
+				String currentText = tfDisplay.getText();
+	            if (currentText.length() > 0) {
+	                tfDisplay.setText(currentText.substring(0, currentText.length() - 1));
+	            }
 			} else {
-				// Handles the "Clear" case
+				tfDisplay.setText("");
 			}
 		}
 	}
