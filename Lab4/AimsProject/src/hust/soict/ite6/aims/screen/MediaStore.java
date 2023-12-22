@@ -1,20 +1,28 @@
 package hust.soict.ite6.aims.screen;
 
 import java.awt.Color;
+import java.awt.FlowLayout;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
+import javax.swing.JDialog;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.SwingUtilities;
 
+import hust.soict.ite6.aims.cart.Cart;
 import hust.soict.ite6.aims.media.Media;
 import hust.soict.ite6.aims.media.Playable;
 
 public class MediaStore extends JPanel{
 	private Media media;
+	private Cart cart;
 	public MediaStore(Media media) {
 		
 		this.media = media;
@@ -28,10 +36,36 @@ public class MediaStore extends JPanel{
 		cost.setAlignmentX(CENTER_ALIGNMENT);
 		
 		JPanel container = new JPanel();
-		container.add(new JButton("Add to cart"));
-		if(media instanceof Playable) {
-			container.add(new JButton("Play"));
-		}
+		container.setLayout(new FlowLayout(FlowLayout.CENTER));
+
+        JButton addToCartButton = new JButton("Add to cart");
+        addToCartButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                cart.addMedia(media);
+            }
+        });
+        container.add(addToCartButton);
+        
+        JDialog playDialog = new JDialog((JFrame) SwingUtilities.getWindowAncestor(this), "Media Player", true);
+        JLabel mediaLabel = new JLabel("Playing: " + media.getTitle());
+        mediaLabel.setHorizontalAlignment(JLabel.CENTER);
+        playDialog.add(mediaLabel);
+
+        playDialog.setSize(400, 300);
+        playDialog.setLocationRelativeTo(this);
+        playDialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+
+        if (media instanceof Playable) {
+            JButton playButton = new JButton("Play");
+            playButton.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    ((Playable) media).play();
+                }
+            });
+            container.add(playButton);
+        }
 		
 		this.add(Box.createVerticalGlue());
 		this.add(title);
