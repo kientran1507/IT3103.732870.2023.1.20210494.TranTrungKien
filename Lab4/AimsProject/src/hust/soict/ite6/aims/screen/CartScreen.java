@@ -6,36 +6,35 @@ import java.io.IOException;
 
 import javax.swing.JFrame;
 
-import hust.soict.ite6.aims.store.Store;
+import hust.soict.ite6.aims.cart.Cart;
 import javafx.application.Platform;
 import javafx.embed.swing.JFXPanel;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 
-public class StoreScreen extends JFrame{
-	private static Store store = new Store();
+public class CartScreen extends JFrame{
+	private static Cart cart = new Cart();
 	
-	public StoreScreen (Store store) {
+	public CartScreen (Cart cart) {
 		super();
 		
-		this.store = store;
+		this.cart = cart;
 		
 		JFXPanel fxPanel = new JFXPanel();
 		this.add(fxPanel);
 		
-		this.setTitle("Store");
+		this.setTitle("Cart");
 		this.setVisible(true);
 		Platform.runLater(new Runnable() {
 			@Override
 			public void run() {
 				try {
-					FXMLLoader loader = new FXMLLoader(getClass().
-							getResource("/hust/soict/ite6/aims/screen/Store.fxml"));
-					StoreScreenController controller = new StoreScreenController(store);
+					FXMLLoader loader = new FXMLLoader(getClass()
+							.getResource("/hust/soict/ite6/aims/screen/Cart.fxml"));
+					CartScreenController controller = new CartScreenController(cart);
 					loader.setController(controller);
 					Parent root = loader.load();
-
 					fxPanel.setScene(new Scene(root));
 				} catch (IOException e) {
 					e.printStackTrace();
@@ -43,5 +42,4 @@ public class StoreScreen extends JFrame{
 			}
 		});
 	}
-
 }

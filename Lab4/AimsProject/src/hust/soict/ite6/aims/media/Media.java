@@ -6,13 +6,16 @@ import java.util.Objects;
 import java.util.Comparator;
 
 public abstract class Media {
-	protected int ID;
-	protected String title; 
-	protected String category;
-	protected float cost;
+	private int ID;
+	private String title; 
+	private String category;
+	private float cost;
 	
 	// Getter methods for media
 	public int getID() {
+		return ID;
+	}
+	public int getId() {
 		return ID;
 	}
 	public String getTitle() {
@@ -24,14 +27,43 @@ public abstract class Media {
 	public float getCost() {
 		return cost;
 	}
-
+	// Setter methods for media
+	public void setId(int nextID) {
+		this.ID = nextID;
+	}
 	public void setTitle(String title) {
 		this.title = title;
 	}
-	public Media() {
-		// TODO Auto-generated constructor stub
+	
+
+	public void setCategory(String category) {
+		this.category = category;
+	}
+	public void setCost(float cost) {
+		this.cost = cost;
 	}
 	
+	public Media(String title) {
+        super();
+        this.title = title;
+    }
+	
+	public Media(int iD, String title, String category, float cost) {
+		super();
+		ID = iD;
+		this.title = title;
+		this.category = category;
+		this.cost = cost;
+	}
+	
+	public Media(String title, String category, float cost) {
+		super();
+		this.title = title;
+		this.category = category;
+		this.cost = cost;
+	}
+	
+
 	// Override equals method for Media class
     @Override
     public boolean equals(Object obj) {
@@ -47,4 +79,6 @@ public abstract class Media {
     
     public static final Comparator<Media> COMPARE_BY_TITLE_COST = new MediaComparatorByTitleCost();
     public static final Comparator<Media> COMPARE_BY_COST_TITLE = new MediaComparatorByCostTitle();
+
+
 }

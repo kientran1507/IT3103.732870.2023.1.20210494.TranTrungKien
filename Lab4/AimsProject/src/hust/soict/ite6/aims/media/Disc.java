@@ -13,12 +13,27 @@ public class Disc extends Media{
 		return length;
 	}
 	
-	public Disc(String director, int length) {
-		super();
-		this.director = director;
-		this.length = length;
-	}
-	public Disc() {
-		// TODO Auto-generated constructor stub
-	}
+	public Disc(String title) {
+        super(title);
+    }
+	
+    public Disc(int id, String title, String category, float cost, String director, int length) {
+        super(id, title, category, cost);
+        this.director = director;
+        this.length = length;
+    }
+    
+    public Disc(String title, String category, float cost, String director, int length) {
+        super(title, category, cost);
+        this.director = director;
+        this.length = length;
+    }
+    
+    public Disc(int id, String title, String category, float cost) {
+        super(id, title, category, cost);
+    }
+    
+    public Disc(String title, String category, float cost) {
+        super(title, category, cost);
+    }
 }

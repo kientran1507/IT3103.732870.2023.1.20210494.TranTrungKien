@@ -1,17 +1,17 @@
 //TranTrungKien-20210494
 
 package hust.soict.ite6.aims.store;
-import java.util.ArrayList;
-
 import hust.soict.ite6.aims.media.Book;
 import hust.soict.ite6.aims.media.CompactDisc;
 import hust.soict.ite6.aims.media.DigitalVideoDisc;
 import hust.soict.ite6.aims.media.Media;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 public class Store {
     // ArrayList to store the DVDs available in the store
-    private ArrayList<Media> itemsInStore = new ArrayList<Media>();
-
+    private ObservableList<Media> itemsInStore = FXCollections.observableArrayList();
+    
     // Method to add a DVD to the store
     public void addMedia(Media media) {
         itemsInStore.add(media);
@@ -74,9 +74,13 @@ public class Store {
         }
     }
 
-	public ArrayList<Media> getItemsInStore() {
-		return itemsInStore;
-	}
+    public ObservableList<Media> getItemsInStore() {
+        if (itemsInStore == null) {
+            itemsInStore = FXCollections.observableArrayList();
+        }
+        return itemsInStore;
+    }
+
 
 
 }
