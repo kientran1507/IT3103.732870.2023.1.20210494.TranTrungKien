@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.paint.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.BorderPane?>
+
+<BorderPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <center>
+      <BorderPane prefHeight="768.0" prefWidth="1024.0" BorderPane.alignment="CENTER">
+         <top>
+            <VBox BorderPane.alignment="CENTER">
+               <children>
+                  <MenuBar>
+                    <menus>
+                      <Menu mnemonicParsing="false" text="Option">
+                        <items>
+                              <Menu mnemonicParsing="false" text="Update Store">
+                                <items>
+                                <MenuItem fx:id="mnAddBook" mnemonicParsing="false" onAction="#addBookPressed" text="Add Book" />
+                                    <MenuItem fx:id="mnAddCD" mnemonicParsing="false" onAction="#addCDPressed" text="Add CD" />
+                                    <MenuItem fx:id="mnAddDVD" mnemonicParsing="false" onAction="#addDVDPressed" text="Add DVD" />
+                                </items>
+                              </Menu>
+                              <MenuItem fx:id="mnViewStore" mnemonicParsing="false" onAction="#viewStorePressed" text="View Store" />
+                              <MenuItem fx:id="mnViewCart" mnemonicParsing="false" onAction="#viewCartPressed" text="View Cart" />
+                        </items>
+                      </Menu>
+                    </menus>
+                  </MenuBar>
+                  <Label text="STORE" textFill="AQUA">
+                     <font>
+                        <Font size="50.0" />
+                     </font>
+                     <padding>
+                        <Insets left="10.0" />
+                     </padding>
+                  </Label>
+               </children>
+            </VBox>
+         </top>
+         <center>
+            <VBox BorderPane.alignment="CENTER">
+               <children>
+                  <HBox alignment="CENTER_LEFT" prefWidth="200.0" spacing="10.0">
+                     <padding>
+                        <Insets bottom="10.0" top="10.0" />
+                     </padding>
+                     <children>
+                        <TextField fx:id="tfSearch" />
+                        <Label text="Search by title" />
+                     </children>
+                  </HBox>
+                  <TableView fx:id="tblMedia">
+                    <columns>
+                        <TableColumn fx:id="colMediaID" minWidth="-1.0" prefWidth="100.0" text="ID" />
+                      <TableColumn fx:id="colMediaTitle" minWidth="-1.0" prefWidth="100.0" text="Title" />
+                      <TableColumn fx:id="colMediaCategory" minWidth="-1.0" prefWidth="100.0" text="Category" />
+                        <TableColumn fx:id="colMediaCost" minWidth="-1.0" prefWidth="100.0" text="Cost" />
+                    </columns>
+                     <columnResizePolicy>
+                        <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                     </columnResizePolicy>
+                     <VBox.margin>
+                        <Insets right="10.0" />
+                     </VBox.margin>
+                  </TableView>
+                  <ToolBar prefHeight="40.0" prefWidth="200.0">
+                    <items>
+                      <Button fx:id="btnPlay" mnemonicParsing="false" text="Play" />
+                        <Button fx:id="btnAdd" mnemonicParsing="false" onAction="#btnAddToCartPressed" text="Add to cart" />
+                        <Button fx:id="btnRemove" mnemonicParsing="false" onAction="#btnRemovePressed" text="Remove from store" />
+                    </items>
+                     <VBox.margin>
+                        <Insets right="10.0" />
+                     </VBox.margin>
+                  </ToolBar>
+               </children>
+               <padding>
+                  <Insets left="10.0" />
+               </padding>
+            </VBox>
+         </center>
+      </BorderPane>
+   </center>
+</BorderPane>
