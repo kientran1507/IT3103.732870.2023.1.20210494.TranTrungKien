@@ -19,6 +19,9 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 
+import hust.soict.ite6.aims.media.Book;
+import hust.soict.ite6.aims.media.CompactDisc;
+import hust.soict.ite6.aims.media.DigitalVideoDisc;
 import hust.soict.ite6.aims.media.Media;
 import hust.soict.ite6.aims.store.Store;
 
@@ -104,6 +107,19 @@ public class StoreScreen extends JFrame{
 	
     public static void main(String[] args) {
         Store store = new Store();  // Create or obtain an instance of Store
+
+        // Create a random CD
+        CompactDisc cd = new CompactDisc("Random CD", "Random Category", 120.5f, 10, "Random Artist");
+        // Create a random DVD
+        DigitalVideoDisc dvd = new DigitalVideoDisc("Random DVD", "Random Category", "Random Director", 160, 180.0f);
+        // Create a random Book
+        Book book = new Book("Random Book", "Random Category", "Random Author", 15.99f);
+
+
+        store.addMedia(dvd);
+        store.addMedia(cd);
+        store.addMedia(book);
+
         new StoreScreen(store);
     }
 }
