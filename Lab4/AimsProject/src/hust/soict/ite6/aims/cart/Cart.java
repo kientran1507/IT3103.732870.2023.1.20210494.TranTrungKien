@@ -3,20 +3,28 @@
 package hust.soict.ite6.aims.cart;
 
 import java.util.Collections;
-import java.util.ArrayList;
+import java.util.function.Predicate;
 
 import hust.soict.ite6.aims.media.DigitalVideoDisc;
 import hust.soict.ite6.aims.media.Media;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
 
 public class Cart {
     // Maximum number of DVDs that can be added to the cart
     public static final int MAX_NUMBERS_ORDERED = 20;
     
     // ArrayList to store the ordered items
-    private ArrayList<Media> itemsOrdered = new ArrayList<Media>();
+    private ObservableList<Media> itemsOrdered = FXCollections.observableArrayList();
+    
+    // FilteredList field to wrap the ObservableList
+    private FilteredList<Media> filteredItemsOrdered;
     
     // Constructor to initialize the cart with no items
-    public Cart() {}
+    public Cart() { 
+        this.filteredItemsOrdered = new FilteredList<>(itemsOrdered, media -> true);
+    }
 
     // Method to add media to the cart
     public void addMedia(Media media) {
@@ -79,7 +87,7 @@ public class Cart {
     public void searchByTitle(String title) {
     	for (Media media : itemsOrdered) {
     		if (media instanceof DigitalVideoDisc) {
-    	        if (media.getTitle() == title) {
+    	        if (media.getTitle().equals(title)) {
     				System.out.println("Found media with title \"" + title + "\": " + media);
     				return;
                 }
@@ -111,5 +119,23 @@ public class Cart {
     public void clearCart() {
         itemsOrdered.clear();
         System.out.println("Cart cleared.");
+    }
+    
+    // Method to get items in cart
+	public ObservableList<Media> getItemsOrdered() {
+		if (itemsOrdered == null) {
+			itemsOrdered = FXCollections.observableArrayList();
+        }
+		return itemsOrdered;
+	}
+	
+    // Method to get items in cart as a FilteredList
+    public FilteredList<Media> getFilteredItemsOrdered() {
+        return filteredItemsOrdered;
+    }
+    
+    // Method to apply a new filter to the FilteredList
+    public void applyFilter(Predicate<Media> predicate) {
+        filteredItemsOrdered.setPredicate(predicate);
     }
 }

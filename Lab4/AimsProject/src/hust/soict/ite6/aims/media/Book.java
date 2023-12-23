@@ -13,9 +13,9 @@ public class Book extends Media{
         // Ensure that the author is not already in the ArrayList before adding
         if (!authors.contains(authorName)) {
             authors.add(authorName);
-            System.out.println(authorName + " added as an author for " + title);
+            System.out.println(authorName + " added as an author for " + getTitle());
         } else {
-            System.out.println(authorName + " is already an author for " + title);
+            System.out.println(authorName + " is already an author for " + getTitle());
         }
     }
 
@@ -24,24 +24,28 @@ public class Book extends Media{
         // Ensure that the author is present in the ArrayList before removing
         if (authors.contains(authorName)) {
             authors.remove(authorName);
-            System.out.println(authorName + " removed as an author for " + title);
+            System.out.println(authorName + " removed as an author for " + getTitle());
         } else {
-            System.out.println(authorName + " is not an author for " + title);
+            System.out.println(authorName + " is not an author for " + getTitle());
         }
     }
-	public Book() {
-		// TODO Auto-generated constructor stub
-	}
+
     public Book(String title, String category, String author, float cost) {
-		this.title = title;
-		this.category = category;
+    	super(title, category, cost); 
 		authors.add(author);
-		this.cost = cost;
+	}
+    
+	public Book(int id, String title, String category, float cost) {
+		super(id, title, category, cost); 
+	}
+	
+	public Book(String title, String category, float cost) {
+		super(title, category, cost); 
 	}
 
 	// Override the toString method
     @Override
     public String toString() {
-        return "[" + title + "] - [" + category + "] - [" + authors + "]: " + cost + " $";
+        return "[" + getTitle() + "] - [" + getCategory() + "] - [" + authors + "]: " + getCost() + " $";
     }
 }

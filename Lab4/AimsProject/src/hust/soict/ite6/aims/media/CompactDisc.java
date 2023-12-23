@@ -10,15 +10,20 @@ public class CompactDisc extends Disc implements Playable{
 
     // Constructors for CompactDisc
     public CompactDisc(String title, String category, float cost, int length, String artist) {
-        super();
-        this.title = title;
-        this.category = category;
-        this.cost = cost;
+        super(title, category, cost);
         this.length = length;
         this.artist = artist;
     }
+    
+	public CompactDisc(int id, String title, String category, float cost) {
+		super(id, title, category, cost);
+	}
+	
+    public CompactDisc(String title, String category, float cost) {
+    	 super(title, category, cost);
+    }
 
-    // Getter method for artist
+	// Getter method for artist
     public String getArtist() {
         return artist;
     }
@@ -65,6 +70,6 @@ public class CompactDisc extends Disc implements Playable{
     // Override the toString method
     @Override
     public String toString() {
-        return "[" + title + "] - [" + category + "] - [" + artist + "] - [" + length + "]: " + cost + " $";
+        return "[" + getTitle() + "] - [" + getCategory() + "] - [" + artist + "] - [" + length + "]: " + getCost() + " $";
     }
 }
