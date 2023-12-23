@@ -14,11 +14,11 @@ public class AIMSTEST {
     	CartScreen cartScreen = new CartScreen(cart);
     	
         // Create a random CD
-        CompactDisc cd = new CompactDisc(1, "Random CD", "Random Artist", 120.5f);
+        CompactDisc cd = new CompactDisc(1, "Random CD", "Random Category", 120.5f);
         // Create a random DVD
-        DigitalVideoDisc dvd = new DigitalVideoDisc(2, "Random DVD", "Random Director", 180.0f);
+        DigitalVideoDisc dvd = new DigitalVideoDisc(2, "Random DVD", "Random Category", 180.0f);
         // Create a random Book
-        Book book = new Book(3, "Random Book", "Random Author", 15.99f);
+        Book book = new Book(3, "Random Book", "Random Category", 15.99f);
 
         // Add items to the store
         store.addMedia(cd);
@@ -31,6 +31,7 @@ public class AIMSTEST {
         // Add items to the cart
         cart.addMedia(cd);
         cart.addMedia(dvd);
+        cart.addMedia(book);
         
     }
 }
