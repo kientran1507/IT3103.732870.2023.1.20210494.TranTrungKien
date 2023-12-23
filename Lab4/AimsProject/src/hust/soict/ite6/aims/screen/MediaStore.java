@@ -13,10 +13,12 @@ import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 
 import hust.soict.ite6.aims.cart.Cart;
+import hust.soict.ite6.aims.exception.PlayerException;
 import hust.soict.ite6.aims.media.Media;
 import hust.soict.ite6.aims.media.Playable;
 
@@ -61,7 +63,11 @@ public class MediaStore extends JPanel{
             playButton.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
-                    ((Playable) media).play();
+                    try {
+                        ((Playable) media).play();
+                    } catch (PlayerException pe) {
+                        JOptionPane.showMessageDialog(container, "Error playing media: " + pe.getMessage(), "Playback Error", JOptionPane.ERROR_MESSAGE);
+                    }
                 }
             });
             container.add(playButton);

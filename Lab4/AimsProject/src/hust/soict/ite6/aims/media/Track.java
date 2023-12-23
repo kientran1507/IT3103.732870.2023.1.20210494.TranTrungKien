@@ -4,6 +4,8 @@ package hust.soict.ite6.aims.media;
 
 import java.util.Objects;
 
+import hust.soict.ite6.aims.exception.PlayerException;
+
 public class Track implements Playable{
     private String title;
     private int length;
@@ -13,11 +15,17 @@ public class Track implements Playable{
         this.title = title;
         this.length = length;
     }
-    // Implement to play the track
-    public void play() {
+    
+    @Override
+    public void play() throws PlayerException {
+        if (getLength() <= 0) {
+            System.err.println("Error: Cannot play the Track. Length is not set or invalid.");
+            throw new PlayerException("Invalid length for Track.");
+        }
         System.out.println("Playing Track: " + getTitle());
         System.out.println("Track length: " + getLength());
     }
+    
     // Getter methods for the fields
     public String getTitle() {
         return title;

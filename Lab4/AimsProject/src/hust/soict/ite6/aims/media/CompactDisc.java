@@ -4,6 +4,8 @@ package hust.soict.ite6.aims.media;
 
 import java.util.ArrayList;
 
+import hust.soict.ite6.aims.exception.PlayerException;
+
 public class CompactDisc extends Disc implements Playable{
     private String artist;
     private ArrayList<Track> tracks = new ArrayList<>();
@@ -56,17 +58,25 @@ public class CompactDisc extends Disc implements Playable{
         return totalLength;
     }
     
-    // Implement to play a CD
-    public void play() {
+ // Implement to play a CD
+    public void play() throws PlayerException {
+        if (this.getLength() <= 0) {
+            throw new PlayerException("Invalid CD length");
+        }
+
         System.out.println("Playing CD: " + getTitle());
         System.out.println("CD artist: " + getArtist());
         System.out.println("CD length: " + getLength() + " minutes");
 
-        // Loop through each track and call Track's play() method
         for (Track track : tracks) {
-            track.play();
+            try {
+                track.play();
+            } catch (PlayerException e) {
+                throw new PlayerException("Error playing track: " + e.getMessage());
+            }
         }
     }
+
     // Override the toString method
     @Override
     public String toString() {

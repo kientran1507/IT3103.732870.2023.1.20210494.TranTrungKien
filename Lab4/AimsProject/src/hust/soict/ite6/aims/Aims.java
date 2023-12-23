@@ -3,9 +3,12 @@
 package hust.soict.ite6.aims;
 
 import java.util.InputMismatchException;
-import java.util.Scanner;	
+import java.util.Scanner;
+
+import javax.swing.JOptionPane;
 
 import hust.soict.ite6.aims.cart.Cart;
+import hust.soict.ite6.aims.exception.PlayerException;
 import hust.soict.ite6.aims.media.Book;
 import hust.soict.ite6.aims.media.CompactDisc;
 import hust.soict.ite6.aims.media.DigitalVideoDisc;
@@ -149,9 +152,21 @@ public class Aims {
 	                    cart.addMedia(foundMedia);
 	                    break;
 	                case 2:
-	                    if (foundMedia instanceof Playable) {
+	                	if (foundMedia instanceof Playable) {
 	                        Playable playableMedia = (Playable) foundMedia;
-	                        playableMedia.play();
+	                        try {
+	                            playableMedia.play();
+	                        } catch (PlayerException pe) {
+	                            System.out.println("An error occurred while playing the media:");
+	                            System.out.println("Error Message: " + pe.getMessage());
+	                            System.out.println("Exception Details:");
+	                            pe.printStackTrace();
+	                            
+	                            // Display a dialog box to the user with the content of the exception
+	                            JOptionPane.showMessageDialog(null, 
+	                            		"Error playing media: " + pe.getMessage(), 
+	                            		"Playback Error", JOptionPane.ERROR_MESSAGE);
+	                        }
 	                    } else {
 	                        System.out.println("This media is not playable.");
 	                    }
@@ -218,7 +233,19 @@ public class Aims {
 	        if (foundMedia != null) {
 	        	if (foundMedia instanceof Playable) {
 	                Playable playableMedia = (Playable) foundMedia;
-	                playableMedia.play();
+                    try {
+                        playableMedia.play();
+                    } catch (PlayerException pe) {
+                        System.out.println("An error occurred while playing the media:");
+                        System.out.println("Error Message: " + pe.getMessage());
+                        System.out.println("Exception Details:");
+                        pe.printStackTrace();
+                        
+                        // Display a dialog box to the user with the content of the exception
+                        JOptionPane.showMessageDialog(null, 
+                        		"Error playing media: " + pe.getMessage(), 
+                        		"Playback Error", JOptionPane.ERROR_MESSAGE);
+                    }
 	        	} else {
 	                System.out.println("This media is not playable.");
 	        	}

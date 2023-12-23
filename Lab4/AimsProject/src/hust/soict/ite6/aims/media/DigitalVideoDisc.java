@@ -2,6 +2,8 @@
 
 package hust.soict.ite6.aims.media;
 
+import hust.soict.ite6.aims.exception.PlayerException;
+
 public class DigitalVideoDisc extends Disc implements Playable {
     private static int nbDigitalVideoDiscs = 0; // Class attribute to keep track of the number of DVDs
     private int id;
@@ -43,11 +45,14 @@ public class DigitalVideoDisc extends Disc implements Playable {
     public String toString() {
         return "[" + getTitle() + "] - [" + getCategory() + "] - [" + getDirector() + "] - [" + getLength() + "]: " + getCost() + " $";
     }
-
-    // Implement to play the DVD
+    
     @Override
-    public void play() {
-        System.out.println("Playing DVD: " + getTitle());
+    public void play() throws PlayerException {
+        if (this.getLength() <= 0) {
+            System.err.println("Error: Cannot play the Digital Video Disc. Length is not set or invalid.");
+            throw new PlayerException("Invalid length for Digital Video Disc.");
+        }
+        System.out.println("Playing Digital Video Disc " + getTitle());
         System.out.println("DVD length: " + getLength());
     }
 }
