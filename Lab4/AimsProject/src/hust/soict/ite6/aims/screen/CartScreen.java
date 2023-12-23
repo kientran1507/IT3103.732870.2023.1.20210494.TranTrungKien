@@ -1,3 +1,5 @@
+//TranTrungKien-20210494
+
 package hust.soict.ite6.aims.screen;
 
 import java.io.IOException;
@@ -12,7 +14,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 
 public class CartScreen extends JFrame{
-	private Cart cart;
+	private static Cart cart = new Cart();
 	
 	public CartScreen (Cart cart) {
 		super();
@@ -29,9 +31,9 @@ public class CartScreen extends JFrame{
 			public void run() {
 				try {
 					FXMLLoader loader = new FXMLLoader(getClass()
-							.getResource("/screen/fxml/cart.fxml"));
-					CartScreenController controller = 
-							new CartScreenController(cart);
+							.getResource("/hust/soict/ite6/aims/screen/Cart.fxml"));
+					CartScreenController controller = new CartScreenController(cart);
+					loader.setController(controller);
 					Parent root = loader.load();
 					fxPanel.setScene(new Scene(root));
 				} catch (IOException e) {
